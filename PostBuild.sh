@@ -361,6 +361,7 @@ function GrubSetup {
   GRUBCMDLINE+="console=ttyS0,115200n8 "
   GRUBCMDLINE+="rd.blacklist=nouveau "
   GRUBCMDLINE+="net.ifnames=0 "
+  GRUBCMDLINE+="biosdevname=0 "
   GRUBCMDLINE+="nvme_core.io_timeout=4294967295 "
   if [[ ${FIPSDISABLE} == "true" ]]
   then
@@ -405,7 +406,8 @@ function GrubSetup {
 
   err_exit "Installing GRUB config-file..." NONE
   chroot "${CHROOTMNT}" /bin/bash -c "/sbin/grub2-mkconfig \
-    > /boot/grub2/grub.cfg" || \
+    -o /boot/grub2/grub.cfg" \
+    --update-bls-cmdline || \
     err_exit "Failed to install GRUB config-file"
   err_exit "GRUB config-file installed" NONE
 
