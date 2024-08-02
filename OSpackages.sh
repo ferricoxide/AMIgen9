@@ -41,6 +41,7 @@ MINXTRAPKGS=(
   libnsl
   lvm2
   python3-pip
+  rhel-net-naming-sysattrs
   rng-tools
   unzip
 )
